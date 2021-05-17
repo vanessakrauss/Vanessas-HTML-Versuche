@@ -1,0 +1,88 @@
+body {
+    max-width:60em;
+    margin: 0.5em auto;
+}
+h1 {
+    border: thin solid transparent;
+    font-size: 2.5em;
+    font-family: cursive;
+    color: white;
+    background-color:purple;
+    text-align: center;
+ }
+ h2 {
+     font-size: 2em;
+     font-family: cursive;
+     color: purple;
+     background-color: beige;
+     border: thin solid;
+     text-align: center;
+ }
+ a, p, table, ul {
+     color:purple;
+     font-size:1.3em;
+     text-align: justify;
+     font-family: sans-serif;
+ }
+ ul ul {
+     font-size: inherit;
+     color:inherit;
+ }
+ li a {
+     font-size: inherit;
+ }
+ #leistungen {
+     color:teal;
+ }
+ #angebot {
+     background-color:teal;
+     border:double;
+     margin: 1em 3em;
+     padding: 1em;
+     width: 20em;
+     
+ }
+ #angebot h2 {
+     color: whitesmoke;
+     background-color: transparent;
+     border:none
+ }
+ #angebot p {
+    color: whitesmoke;
+    text-align: center;
+ }
+ section {
+     display:grid;
+     grid-template-columns: 1fr 25em;
+ }
+ section h2 {
+     grid-column: 1 / -1;
+ }
+ header {
+	height: 1.5em;
+	padding: 0 1em;
+	margin-bottom: 10em;
+	display: grid;
+	grid-template-columns: 5em 1fr 1fr;
+}
+header p:first-of-type {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+header p:last-of-type {
+	transform: rotate(-10deg);
+	border: thin solid;
+	padding: 0.5em;
+	border-radius: 0.2em;
+	align-self: end;
+	width: 16em;
+    margin-left: 1em;
+}
+header #backlink {
+	display: inline-block;
+	text-shadow: none;
+	color: transparent;
+	background-size: contain;
+	width: 5em;
+	height: 5em;
+}
