@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <title>Daten her!</title>
+    </head>
+    <body>
+        <p>Was ist dein Vorname?</p>
+        <input type="text" id="Vorname">
+        <button id="VornameFertig">Eingabe bestätigen</button>
+        <br>
+        <br>
+        <output id="OutputVorname"></output>
+
+        <p>Was ist dein Nachname?</p>
+        <input type="text" id="Nachname">
+        <button id="NachnameFertig">Eingabe bestätigen</button>
+        <br>
+        <br>
+        <output id="OutputNachname"></output>
+
+        <p>Was ist dein Geburtsdatum?</p>
+        <input type="date" id="Geburtsdatum">
+        <button id="GeburtsdatumFertig">Eingabe bestätigen</button>
+        <br>
+        <output id="OutputGeburtstag"></output>
+
+        <p>Was ist deine Augenfarbe?</p>
+        <label for="Augenfarbe">Auswählen:</label>
+        <select name="Augenfarbe" id="Augenfarbe">
+            <option value="blau">Blau</option>
+            <option value="braun">Braun</option>
+            <option value="grau">Grau</option>
+            <option value="grün">Grün</option>
+        </select>
+        <button id="AugenfarbeFertig">Eingabe bestätigen</button>
+        <br>
+        <br>
+        <output id="OutputAugenfarbe"></output>
+          
+        <script>
+        document.querySelector('#VornameFertig').onclick = VornamenZeichenZählen;
+        function VornamenZeichenZählen() {
+        var Vorname = document.getElementById("Vorname").value;
+        var VornameLänge = Vorname.length;
+        document.querySelector('#OutputVorname').innerText += " Dein Vorname hat " + VornameLänge + " Zeichen. ";
+        }
+
+        document.querySelector('#NachnameFertig').onclick = NachnamenZeichenZählen;
+        function NachnamenZeichenZählen() {
+        var Nachname = document.getElementById("Nachname").value;
+        var NachnameLänge = Nachname.length;
+        document.querySelector('#OutputNachname').innerText += " Dein Nachname hat " + NachnameLänge + " Zeichen. ";
+        }
+
+        document.querySelector('#GeburtsdatumFertig').onclick = AlterUndGeburtstagBerechnen;
+        function AlterUndGeburtstagBerechnen() {
+        //Alter berechnen
+        var Heute = new Date();
+        var Geburtsdatum = document.getElementById("Geburtsdatum").value;
+        var Geburtstag = new Date(Geburtsdatum);
+        var Alter = Heute.getFullYear() - Geburtstag.getFullYear();
+        var Monatsvergleich = Heute.getMonth() - Geburtstag.getMonth();
+            if (Monatsvergleich < 0) {
+                Alter--
+            }
+            if (Monatsvergleich === 0 && Heute.getDate() < Geburtstag.getDate()) {
+                Alter--
+            }
+        //Tage bis zum nächsten Geburtstag berechnen. Nutzt teilweise bestehende Variablen von oben.
+        var AktuellesJahr = Heute.getFullYear();
+        var NächsterGeburtstagMilliseconds = Geburtstag.setFullYear(AktuellesJahr);
+        var GeburtstagVorbei = Heute.getMonth() - Geburtstag.getMonth();
+            if (GeburtstagVorbei > 0) {
+                NächsterGeburtstagMilliseconds = Geburtstag.setFullYear(AktuellesJahr+1);
+            }
+            if (GeburtstagVorbei === 0 && Heute.getDate() > Geburtstag.getDate()) {
+                NächsterGeburtstagMilliseconds = Geburtstag.setFullYear(AktuellesJahr+1);
+            }
+        var NächsterGeburtstagDatum = new Date(NächsterGeburtstagMilliseconds);
+        var HeuteMilliseconds = Heute.getTime();
+        var DifferenzMilliseconds =  NächsterGeburtstagMilliseconds - HeuteMilliseconds;
+        const MillisecondsInADay = 86400000;
+        var DifferenzTage = Math.ceil(DifferenzMilliseconds / MillisecondsInADay);
+        document.querySelector('#OutputGeburtstag').innerText += "Du bist " + Alter + " Jahre alt und es sind noch " + DifferenzTage + " Tage bis zu deinem nächsten Geburtstag.";
+        }
+
+
+        document.querySelector('#AugenfarbeFertig').onclick = AugenfarbeAnzeigen;
+        function AugenfarbeAnzeigen() {
+        var Augenfarbe = document.getElementById("Augenfarbe").value;
+        document.querySelector('#OutputAugenfarbe').innerText += "Deine Augenfarbe ist " + Augenfarbe + "? Toll!";
+        }
+        
+        </script>
+    </body>
+</html>
+
